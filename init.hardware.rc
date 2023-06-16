@@ -466,8 +466,6 @@ on boot
 
     start init-modem-sh
 
-    start rfs_access
-
     # default country code
     setprop ro.boot.wificountrycode 00
 
