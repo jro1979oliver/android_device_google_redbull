@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+$(call enforce-product-packages-exist,)
+
 # define hardware platform
 PRODUCT_PLATFORM := sm7250
 
@@ -377,6 +379,38 @@ PRODUCT_PACKAGES += \
     memtrack.lito \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service
+
+# Bluetooth HAL
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl-qti \
+    android.hardware.bluetooth@1.0-service-qti
+
+#Bluetooth SAR HAL
+PRODUCT_PACKAGES += \
+    hardware.google.bluetooth.sar@1.0-impl \
+    hardware.google.bluetooth.sar@1.0.vendor
+
+PRODUCT_PACKAGES_DEBUG += \
+    bluetooth_sar_test
+
+#Bluetooth AFH HAL
+PRODUCT_PACKAGES += \
+    hardware.google.bluetooth.bt_channel_avoidance@1.0-impl \
+    hardware.google.bluetooth.bt_channel_avoidance@1.0.vendor
+
+# QTI Bluetooth Packages
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl-qti \
+    android.hardware.bluetooth@1.0-service-qti \
+    com.dsi.ant@1.0.vendor \
+    com.qualcomm.qti.bluetooth_audio@1.0 \
+    com.qualcomm.qti.bluetooth_audio@1.0.vendor \
+    libldacBT_enc \
+    libldacBT_abr \
+    vendor.qti.hardware.bluetooth_audio@2.0.vendor \
+    vendor.qti.hardware.bluetooth_audio@2.1.vendor \
+    vendor.qti.hardware.btconfigstore@1.0.vendor \
+    vendor.qti.hardware.btconfigstore@2.0.vendor
 
 # Bluetooth SoC
 PRODUCT_PROPERTY_OVERRIDES += \
