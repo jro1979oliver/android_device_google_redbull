@@ -61,6 +61,14 @@ on early-init && property:ro.boot.mode=charger
     # Loading kernel modules in background
     start charger_insmod_sh
 
+on init
+     # Setup permission for Power HAL
+    chown system system /dev/stune/top-app/schedtune.boost
+    chown system system /dev/cpu_dma_latency
+
+    chmod 0664 /dev/stune/top-app/schedtune.boost
+    chmod 0664 /dev/cpu_dma_latency
+
 on init && property:vendor.skip.init=0
     # Boot time cpuset and stune
     write /dev/cpuset/top-app/cpus 0-7
@@ -528,7 +536,7 @@ on property:sys.boot_completed=1
     write /dev/stune/schedtune.boost 0
     write /dev/stune/top-app/schedtune.prefer_idle 1
     write /dev/stune/top-app/schedtune.prefer_high_cap 0
-    write /dev/stune/top-app/schedtune.boost 10
+    write /dev/stune/top-app/schedtune.boost 1
 
     # HardwareInfo needs to be able to read display info
     chmod 444 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/panel_info/panel0/serial_number
